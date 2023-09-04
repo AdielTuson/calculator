@@ -37,3 +37,15 @@ const operate = function(variableA, operator, variableB) {
         return divide(variableA,variableB);
     }
 }
+
+//Display updating functions
+let displayValue;
+const displaySection = document.querySelector('.display');
+const numbersBtns = document.querySelectorAll('.digit');
+    console.log(numbersBtns);
+
+numbersBtns.forEach((button) => {
+    button.addEventListener('click', () => {
+        displaySection.textContent = button.textContent;
+    })
+})
