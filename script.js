@@ -43,9 +43,14 @@ let displayValue;
 const displaySection = document.querySelector('.display');
 const numbersBtns = document.querySelectorAll('.digit');
     console.log(numbersBtns);
+const clearBtn = document.querySelector('#clear');
 
 numbersBtns.forEach((button) => {
     button.addEventListener('click', () => {
-        displaySection.textContent = button.textContent;
+        displaySection.textContent += button.textContent;
     })
+});
+
+clearBtn.addEventListener('click', () => {
+    displaySection.textContent = 0;
 })
