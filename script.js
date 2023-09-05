@@ -44,6 +44,7 @@ const displaySection = document.querySelector('.display');
 const buttons = document.querySelectorAll('.buttons');
     console.log(buttons);
 const clearBtn = document.querySelector('#clear');
+const equalsBtn = document.querySelector('#equals');
 
 function updateDisplay() {
     buttons.forEach((button) => {
@@ -62,4 +63,23 @@ function clearDisplay() {
     })
 }
 clearDisplay();
+
+function getVariables() {
+    const displayArr = displayValue.split(/([-+*/])/);
+    variableA = +displayArr[0];
+    operator = displayArr[1];
+    variableB = +displayArr[2];
+    return displayArr;
+}
+
+function getSolution() {
+    equalsBtn.addEventListener('click', () => {
+        getVariables();
+            console.log(getVariables());
+        operate(variableA, operator, variableB)
+        console.log(operate(variableA, operator, variableB));
+        
+    })
+}
+getSolution();
 
