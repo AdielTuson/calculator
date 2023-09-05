@@ -75,10 +75,7 @@ function getVariables() {
 function getSolution() {
     equalsBtn.addEventListener('click', () => {
         getVariables();
-            console.log(getVariables());
-        operate(variableA, operator, variableB)
-        console.log(operate(variableA, operator, variableB));
-        
+        displaySection.textContent = operate(variableA, operator, variableB);
     })
 }
 getSolution();
