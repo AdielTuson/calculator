@@ -41,16 +41,25 @@ const operate = function(variableA, operator, variableB) {
 //Display updating functions
 let displayValue;
 const displaySection = document.querySelector('.display');
-const numbersBtns = document.querySelectorAll('.digit');
-    console.log(numbersBtns);
+const buttons = document.querySelectorAll('.buttons');
+    console.log(buttons);
 const clearBtn = document.querySelector('#clear');
 
-numbersBtns.forEach((button) => {
-    button.addEventListener('click', () => {
-        displaySection.textContent += button.textContent;
-    })
-});
+function updateDisplay() {
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            displaySection.textContent += button.textContent;
+            displayValue = displaySection.textContent;
+                console.log(displayValue);
+        })
+    });
+}
+updateDisplay();
 
-clearBtn.addEventListener('click', () => {
-    displaySection.textContent = 0;
-})
+function clearDisplay() {
+    clearBtn.addEventListener('click', () => {
+        displaySection.textContent = 0;
+    })
+}
+clearDisplay();
+
