@@ -16,10 +16,7 @@ const divide = function(a,b) {
 }
 
 //Calculator operation
-let variableA;
-let variableB;
-let operator;
-    
+
 const operate = function(variableA, operator, variableB) {
     if (operator === '+') {
         return add(variableA, variableB);
@@ -64,19 +61,20 @@ function clearDisplay() {
 }
 clearDisplay();
 
-function getVariables() {
-    const displayArr = displayValue.split(/([-+*/])/);
-    variableA = +displayArr[0];
-    operator = displayArr[1];
-    variableB = +displayArr[2];
-    return displayArr;
-}
-
 function getSolution() {
     equalsBtn.addEventListener('click', () => {
-        getVariables();
-        displaySection.textContent = operate(variableA, operator, variableB);
+        const displayArr = displayValue.split(/([-+*/])/);
+            console.log(displayArr);
+        while (displayArr.length > 1) {
+            let a = +displayArr[0];
+            let b = +displayArr[2];
+            let operator = displayArr[1];
+            a = operate(a, operator, b);
+            displayArr[0] = a;
+            displayArr.splice(1,2);
+        }
+            console.log(displayArr);
+        displaySection.textContent = displayArr;
     })
 }
 getSolution();
-
