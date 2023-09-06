@@ -18,20 +18,22 @@ const divide = function(a,b) {
 //Calculator operation
 
 const operate = function(variableA, operator, variableB) {
-    if (operator === '+') {
-        return add(variableA, variableB);
-    } 
+    switch (operator) {
+        case '+': {
+            return add(variableA, variableB);
+        }
 
-    else if (operator === '-') {
-        return subtract(variableA, variableB);
-    }
+        case '-': {
+            return subtract(variableA, variableB);
+        }
 
-    else if (operator === '*') {
-        return multiply(variableA, variableB);
-    }
+        case '*': {
+            return multiply(variableA, variableB);
+        }
 
-    else if (operator === '/') {
-        return (variableB === 0) ? "Error" : divide(variableA,variableB);
+        case '/': {
+            return (variableB === 0) ? "Error" : divide(variableA,variableB);
+        }
     }
 }
 
