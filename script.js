@@ -38,10 +38,9 @@ const operate = function(variableA, operator, variableB) {
 }
 
 //Display updating functions
-let displayValue;
+let displayValue = 0;
 const displaySection = document.querySelector('.display');
 const buttons = document.querySelectorAll('.buttons');
-    console.log(buttons);
 const clearBtn = document.querySelector('#clear');
 const equalsBtn = document.querySelector('#equals');
 
@@ -58,6 +57,7 @@ updateDisplay();
 function clearDisplay() {
     clearBtn.addEventListener('click', () => {
         displaySection.textContent = 0;
+        displayValue = 0;
     })
 }
 clearDisplay();
@@ -65,16 +65,19 @@ clearDisplay();
 //Calculate the solution based on the display value
 function getSolution() {
     equalsBtn.addEventListener('click', () => {
-        const displayArr = displayValue.split(/([-+*/])/);
-        while (displayArr.length > 1) {
-            let a = +displayArr[0];
-            let b = +displayArr[2];
-            let operator = displayArr[1];
-            a = operate(a, operator, b);
-            displayArr[0] = a;
-            displayArr.splice(1,2);
+        if (displayValue !== 0){
+            console.log(displayValue)
+            const displayArr = displayValue.split(/([-+*/])/);
+            while (displayArr.length > 1) {
+                let a = +displayArr[0];
+                let b = +displayArr[2];
+                let operator = displayArr[1];
+                a = operate(a, operator, b);
+                displayArr[0] = a;
+                displayArr.splice(1,2);
+            }
+            displaySection.textContent = displayArr;
         }
-        displaySection.textContent = displayArr;
     })
 }
 getSolution();
