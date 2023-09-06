@@ -31,7 +31,7 @@ const operate = function(variableA, operator, variableB) {
     }
 
     else if (operator === '/') {
-        return divide(variableA,variableB);
+        return (variableB === 0) ? "Error" : divide(variableA,variableB);
     }
 }
 
@@ -48,7 +48,6 @@ function updateDisplay() {
         button.addEventListener('click', () => {
             displaySection.textContent += button.textContent;
             displayValue = displaySection.textContent;
-                console.log(displayValue);
         })
     });
 }
@@ -61,10 +60,10 @@ function clearDisplay() {
 }
 clearDisplay();
 
+//Calculate the solution based on the display value
 function getSolution() {
     equalsBtn.addEventListener('click', () => {
         const displayArr = displayValue.split(/([-+*/])/);
-            console.log(displayArr);
         while (displayArr.length > 1) {
             let a = +displayArr[0];
             let b = +displayArr[2];
@@ -73,7 +72,6 @@ function getSolution() {
             displayArr[0] = a;
             displayArr.splice(1,2);
         }
-            console.log(displayArr);
         displaySection.textContent = displayArr;
     })
 }
