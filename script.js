@@ -33,6 +33,7 @@ const displaySection = document.querySelector('.display');
 const buttons = document.querySelectorAll('.buttons');
 const clearBtn = document.querySelector('#clear');
 const equalsBtn = document.querySelector('#equals');
+const deleteBtn = document.querySelector('#delete');
 let displayValue = 0;
 
 function updateDisplay() {
@@ -42,7 +43,7 @@ function updateDisplay() {
                 displaySection.textContent = ''; 
             }
             displaySection.textContent += button.textContent;
-            displayValue = displaySection.textContent;
+            updateDisplayVal();
         })
     });
 }
@@ -51,10 +52,24 @@ updateDisplay();
 function clearDisplay() {
     clearBtn.addEventListener('click', () => {
         displaySection.textContent = 0;
-        displayValue = displaySection.textContent;
+        updateDisplayVal();
     })
 }
 clearDisplay();
+
+function deleteChar(){
+    deleteBtn.addEventListener('click', () => {
+        if (displaySection.textContent.length > 1) {
+            displaySection.textContent = displaySection.textContent.slice(0,-1);
+        }
+
+        else {
+            displaySection.textContent = 0;
+        }
+        updateDisplayVal();        
+    })
+}
+deleteChar();
 
 //Calculate the solution based on the display value
 function getSolution() {
@@ -70,8 +85,13 @@ function getSolution() {
                 displayValue[0] = a;
                 displayValue.splice(1,2);
             }
-            displaySection.textContent = displayValue;
+            displaySection.textContent = parseFloat((+displayValue).toFixed(3));//Make sure the answer is rounded
+            updateDisplayVal();
         }
     })
 }
 getSolution();
+
+function updateDisplayVal() {
+    displayValue = displaySection.textContent;
+}
