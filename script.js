@@ -34,15 +34,18 @@ const buttons = document.querySelectorAll('.buttons');
 const clearBtn = document.querySelector('#clear');
 const equalsBtn = document.querySelector('#equals');
 const deleteBtn = document.querySelector('#delete');
+const dotBtn = document.querySelector('#dot');
 let displayValue = 0;
 
 function updateDisplay() {
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            if (displaySection.textContent === '0') {
+            if (displaySection.textContent === '0' && button.textContent !== '.') {
                 displaySection.textContent = ''; 
             }
+            console.log(button.textContent)
             displaySection.textContent += button.textContent;
+            checkDot();
             updateDisplayVal();
         })
     });
@@ -52,6 +55,7 @@ updateDisplay();
 function clearDisplay() {
     clearBtn.addEventListener('click', () => {
         displaySection.textContent = 0;
+        checkDot();
         updateDisplayVal();
     })
 }
@@ -66,6 +70,7 @@ function deleteChar(){
         else {
             displaySection.textContent = 0;
         }
+        checkDot();
         updateDisplayVal();        
     })
 }
@@ -94,4 +99,13 @@ getSolution();
 
 function updateDisplayVal() {
     displayValue = displaySection.textContent;
+}
+
+function checkDot() {
+    if ((displaySection.textContent).includes('.')) {
+        dotBtn.disabled = true;
+    }
+    else {
+        dotBtn.disabled = false;
+    }
 }
