@@ -37,41 +37,40 @@ const deleteBtn = document.querySelector('#delete');
 const dotBtn = document.querySelector('#dot');
 let displayValue = 0;
 
-function updateDisplay() {
+function addToDisplay() {
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            if (displaySection.textContent === '0' && button.textContent !== '.') {
-                displaySection.textContent = ''; 
+            if (displayValue === 0 && button.textContent !== '.') {
+                displayValue = ''; 
             }
-            console.log(button.textContent)
-            displaySection.textContent += button.textContent;
+            displayValue += button.textContent;
             checkDot();
-            updateDisplayVal();
+            updateDisplay();
         })
     });
 }
-updateDisplay();
+addToDisplay();
 
 function clearDisplay() {
     clearBtn.addEventListener('click', () => {
-        displaySection.textContent = 0;
+        displayValue = 0;
         checkDot();
-        updateDisplayVal();
+        updateDisplay();
     })
 }
 clearDisplay();
 
 function deleteChar(){
     deleteBtn.addEventListener('click', () => {
-        if (displaySection.textContent.length > 1) {
-            displaySection.textContent = displaySection.textContent.slice(0,-1);
+        if (displayValue.length > 1) {
+            displayValue = displayValue.slice(0,-1);
         }
 
         else {
-            displaySection.textContent = 0;
+            displayValue = 0;
         }
         checkDot();
-        updateDisplayVal();        
+        updateDisplay();        
     })
 }
 deleteChar();
@@ -81,7 +80,6 @@ function getSolution() {
     equalsBtn.addEventListener('click', () => {
         if (displayValue !== 0){
             displayValue = displayValue.split(/([-+*/])/);
-                console.log(displayValue)
             while (displayValue.length > 1) {
                 let a = +displayValue[0];
                 let b = +displayValue[2];
@@ -90,19 +88,19 @@ function getSolution() {
                 displayValue[0] = a;
                 displayValue.splice(1,2);
             }
-            displaySection.textContent = parseFloat((+displayValue).toFixed(3));//Make sure the answer is rounded
-            updateDisplayVal();
+            displayValue = parseFloat((+displayValue).toFixed(3)).toString();//Make sure the answer is rounded
+            updateDisplay();
         }
     })
 }
 getSolution();
 
-function updateDisplayVal() {
-    displayValue = displaySection.textContent;
+function updateDisplay() {
+    displaySection.textContent = displayValue;
 }
 
 function checkDot() {
-    if ((displaySection.textContent).includes('.')) {
+    if (displayValue.toString().includes('.')) {
         dotBtn.disabled = true;
     }
     else {
