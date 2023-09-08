@@ -35,12 +35,14 @@ const clearBtn = document.querySelector('#clear');
 const equalsBtn = document.querySelector('#equals');
 const deleteBtn = document.querySelector('#delete');
 const dotBtn = document.querySelector('#dot');
+const operators = /[+\-*/.]/;
 let displayValue = 0;
+
 
 function addToDisplay() {
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            if (displayValue === 0 && button.textContent !== '.') {
+            if (displayValue === 0 && isOperator(button.textContent) === false) {
                 displayValue = ''; 
             }
             displayValue += button.textContent;
@@ -107,3 +109,8 @@ function checkDot() {
         dotBtn.disabled = false;
     }
 }
+
+function isOperator(char){
+    return operators.test(char);
+}
+
