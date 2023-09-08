@@ -30,7 +30,7 @@ const operate = function(variableA, operator, variableB) {
 
 //Display updating functions
 const displaySection = document.querySelector('.display');
-const buttons = document.querySelectorAll('.buttons');
+const buttons = document.querySelectorAll('.button');
 const clearBtn = document.querySelector('#clear');
 const equalsBtn = document.querySelector('#equals');
 const deleteBtn = document.querySelector('#delete');
