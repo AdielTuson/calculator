@@ -42,7 +42,7 @@ let displayValue = 0;
 function addToDisplay() {
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            if (displayValue === 0 && isOperator(button.textContent) === false) {
+            if (displayValue == 0 && isOperator(button.textContent) === false) {
                 displayValue = ''; 
             }
             displayValue += button.textContent;
@@ -97,7 +97,9 @@ function getSolution() {
                     displayValue.splice(1,2);
                 }
             }
-            displayValue = parseFloat((+displayValue).toFixed(3)).toString();//Make sure the answer is rounded
+            if (!isNaN(displayValue)) {
+                roundAnswer();
+            }
             updateDisplay();
         }
     })
@@ -119,5 +121,9 @@ function checkDot() {
 
 function isOperator(char){
     return operators.test(char);
+}
+
+function roundAnswer() {
+    displayValue = parseFloat((+displayValue).toFixed(3)).toString();
 }
 
