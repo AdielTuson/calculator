@@ -81,14 +81,21 @@ deleteChar();
 function getSolution() {
     equalsBtn.addEventListener('click', () => {
         if (displayValue !== 0){
+            console.log(displayValue)
             displayValue = displayValue.split(/([-+*/])/);
-            while (displayValue.length > 1) {
-                let a = +displayValue[0];
-                let b = +displayValue[2];
-                let operator = displayValue[1];
-                a = operate(a, operator, b);
-                displayValue[0] = a;
+            console.log(displayValue)
+            if (displayValue[2] == '') {
                 displayValue.splice(1,2);
+            }
+            else {
+                while (displayValue.length > 2) {
+                    let a = +displayValue[0];
+                    let b = +displayValue[2];
+                    let operator = displayValue[1];
+                    a = operate(a, operator, b);
+                    displayValue[0] = a;
+                    displayValue.splice(1,2);
+                }
             }
             displayValue = parseFloat((+displayValue).toFixed(3)).toString();//Make sure the answer is rounded
             updateDisplay();
