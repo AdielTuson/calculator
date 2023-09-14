@@ -18,11 +18,11 @@ const operate = function(variableA, operator, variableB) {
             return subtract(variableA, variableB);
         }
 
-        case '*': {
+        case '×': {
             return multiply(variableA, variableB);
         }
 
-        case '/': {
+        case '÷': {
             return (variableB === 0) ? "Error" : divide(variableA,variableB);
         }
     }
@@ -35,7 +35,7 @@ const clearBtn = document.querySelector('#clear');
 const equalsBtn = document.querySelector('#equals');
 const deleteBtn = document.querySelector('#delete');
 const dotBtn = document.querySelector('#dot');
-const operators = /[+\-*/.]/;
+const operators = /[+\-×÷.]/;
 let displayValue = 0;
 
 
@@ -82,7 +82,7 @@ function getSolution() {
     equalsBtn.addEventListener('click', () => {
         if (displayValue !== 0){
             console.log(displayValue)
-            displayValue = displayValue.split(/([-+*/])/);
+            displayValue = displayValue.split(/([-+×÷])/);
             console.log(displayValue)
             if (displayValue[2] == '') {
                 displayValue.splice(1,2);
