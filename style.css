@@ -83,7 +83,7 @@ body {
 }
 
 #equals {
-    background-color: #21b339;
+    background-color: #1a922e;
 }
 
 .operator {
@@ -95,6 +95,13 @@ button {
     border: none;
     cursor: pointer;
     font-family: inherit;
-    font-size: 30px;
+    font-size: 35px;
+    transition: all 0.15s;
+}
+
+button:hover{
+    transform: scale(1.04);
+    transition: all 0.15s;
+    box-shadow: 0 0 10px #020247;
 }
 
