@@ -127,3 +127,9 @@ function roundAnswer() {
     displayValue = parseFloat((+displayValue).toFixed(3)).toString();
 }
 
+//Add keyboard support 
+window.addEventListener('keydown', (e) => {
+    const button = document.querySelector(`button[data-code="${e.code}"]`);
+    if (!button) return;
+    button.click();
+})
