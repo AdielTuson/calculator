@@ -16,6 +16,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(135deg, #33d6c9, #1c9831, #5278a9);
 }
 
 .calculator {
@@ -23,7 +24,7 @@ body {
     height: 650px;
     padding: 30px;
     border-radius: 15px;
-    background-color: rgb(134, 157, 143);
+    background-color: #ffffff67;
     display: flex;
     flex-direction: column;
     gap: 30px;   
@@ -36,7 +37,7 @@ body {
     align-items: end;
     justify-content: end; 
     background-color: rgb(255, 255, 255);
-    border-radius: 5px;
+    border-radius: 15px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
@@ -62,6 +63,14 @@ body {
     font-family: inherit;
 }
 
+#clear {
+    background-color: #5a96c5;
+}
+
+#delete {
+    background-color: rgba(205, 69, 105, 0.989);
+}
+
 .main-buttons {
     flex: auto;
     display: flex;
@@ -73,8 +82,16 @@ body {
     width: calc(25% - 7.5px);
 }
 
+#equals {
+    background-color: #21b339;
+}
+
+.operator {
+    background-color: #4d484834;
+}
+
 button {
-    border-radius: 5px;
+    border-radius: 15px;
     border: none;
     cursor: pointer;
     font-family: inherit;
