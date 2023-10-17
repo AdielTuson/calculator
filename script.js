@@ -36,18 +36,26 @@ const equalsBtn = document.querySelector('#equals');
 const deleteBtn = document.querySelector('#delete');
 const dotBtn = document.querySelector('#dot');
 const operators = /[+\-×÷.]/;
-let displayValue = 0;
-
+let displayValue = displaySection.textContent;
+    console.log(displayValue)
 
 function addToDisplay() {
+    let previousOperand;
+    let currentOperand;
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            if (displayValue == 0 && isOperator(button.textContent) === false) {
+            currentOperand = button.textContent; 
+            if ((displayValue == 0) && (isOperator(currentOperand) === false) && (isOperator(previousOperand) === false)) {
                 displayValue = ''; 
             }
-            displayValue += button.textContent;
+                console.log(previousOperand)
+            if (isOperator(previousOperand) === true && isOperator(currentOperand) === true) {
+                return;
+            }
+            displayValue += currentOperand;
             checkDot();
             updateDisplay();
+            previousOperand = currentOperand;
         })
     });
 }
@@ -81,9 +89,9 @@ deleteChar();
 function getSolution() {
     equalsBtn.addEventListener('click', () => {
         if (displayValue !== 0){
-            console.log(displayValue)
+                console.log(typeof displayValue)
             displayValue = displayValue.split(/([-+×÷])/);
-            console.log(displayValue)
+                console.log( typeof displayValue)
             if (displayValue[2] == '') {
                 displayValue.splice(1,2);
             }
@@ -97,6 +105,7 @@ function getSolution() {
                     displayValue.splice(1,2);
                 }
             }
+            console.log(displayValue)
             if (!isNaN(displayValue)) {
                 roundAnswer();
             }
