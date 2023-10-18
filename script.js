@@ -35,27 +35,22 @@ const clearBtn = document.querySelector('#clear');
 const equalsBtn = document.querySelector('#equals');
 const deleteBtn = document.querySelector('#delete');
 const dotBtn = document.querySelector('#dot');
+const operatorBtns = document.querySelectorAll('.operator');
 const operators = /[+\-×÷.]/;
 let displayValue = displaySection.textContent;
     console.log(displayValue)
 
 function addToDisplay() {
-    let previousOperand;
-    let currentOperand;
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            currentOperand = button.textContent; 
-            if ((displayValue == 0) && (isOperator(currentOperand) === false) && (isOperator(previousOperand) === false)) {
+            let buttonContent = button.textContent; 
+            if ((displayValue == "0") && (isOperator(buttonContent) === false) 
+            ) {
                 displayValue = ''; 
             }
-                console.log(previousOperand)
-            if (isOperator(previousOperand) === true && isOperator(currentOperand) === true) {
-                return;
-            }
-            displayValue += currentOperand;
+            displayValue += buttonContent;
             checkDot();
             updateDisplay();
-            previousOperand = currentOperand;
         })
     });
 }
