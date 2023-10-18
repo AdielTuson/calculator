@@ -39,16 +39,23 @@ const operatorBtns = document.querySelectorAll('.operator');
 const operators = /[+\-×÷.]/;
 let displayValue = displaySection.textContent;
     console.log(displayValue)
+let previousChar = null;
 
 function addToDisplay() {
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            let buttonContent = button.textContent; 
-            if ((displayValue == "0") && (isOperator(buttonContent) === false) 
+            let currentChar= button.textContent; 
+            if ((displayValue == "0") && (isOperator(currentChar) === false) 
             ) {
                 displayValue = ''; 
             }
-            displayValue += buttonContent;
+            if (operators.test(previousChar) && operators.test(currentChar)) {
+                // Prevent consecutive operators
+                return;
+            }
+
+            displayValue += currentChar;
+            previousChar= currentChar;
             checkDot();
             updateDisplay();
         })
