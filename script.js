@@ -53,8 +53,6 @@ function addToDisplay() {
                 // Prevent consecutive operators
                 return;
             }
-            
-
             displayValue += currentChar;
             previousChar = currentChar;
             checkDot();
@@ -79,7 +77,6 @@ function deleteChar(){
         if (displayValue.length > 1) {
             displayValue = displayValue.slice(0,-1);
         }
-
         else {
             displayValue = '0';
         }
@@ -93,27 +90,27 @@ deleteChar();
 //Calculate the solution based on the display value
 function getSolution() {
     equalsBtn.addEventListener('click', () => {
-        if (displayValue !== 0){
-                console.log(typeof displayValue)
-            displayValue = displayValue.split(/([-+×÷])/);
-            if (displayValue[2] == '') {
+        if (displayValue === 0){
+            return;
+        }
+        displayValue = displayValue.split(/([-+×÷])/);
+        if (displayValue[2] == '') {
+            displayValue.splice(1,2);
+        }
+        else {
+            while (displayValue.length > 2) {
+                let a = +displayValue[0];
+                let b = +displayValue[2];
+                let operator = displayValue[1];
+                a = operate(a, operator, b);
+                displayValue[0] = a;
                 displayValue.splice(1,2);
             }
-            else {
-                while (displayValue.length > 2) {
-                    let a = +displayValue[0];
-                    let b = +displayValue[2];
-                    let operator = displayValue[1];
-                    a = operate(a, operator, b);
-                    displayValue[0] = a;
-                    displayValue.splice(1,2);
-                }
-            }
-            if (!isNaN(displayValue)) {
-                roundAnswer();
-            }
-            updateDisplay();
         }
+        if (!isNaN(displayValue)) {
+            roundAnswer();
+        }
+        updateDisplay();
     })
 }
 getSolution();
@@ -123,12 +120,7 @@ function updateDisplay() {
 }
 
 function checkDot() {
-    if (displayValue.toString().includes('.')) {
-        dotBtn.disabled = true;
-    }
-    else {
-        dotBtn.disabled = false;
-    }
+    dotBtn.disabled = (displayValue.toString().includes('.')) ? true : false;
 }
 
 function isOperator(char){
@@ -142,13 +134,8 @@ function roundAnswer() {
 //Will reset the previousChar variable in order to prevent errors
 function resetPreviousChar() {
     const lastChar = displayValue.charAt(displayValue.length -1);
-    if (!isOperator(lastChar)){
-        previousChar = null;
-    }
 
-    else {
-        previousChar = lastChar;
-    }
+    previousChar = !isOperator(lastChar) ?  null : lastChar;
 }
 
 //Add keyboard support 
