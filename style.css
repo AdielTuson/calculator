@@ -16,7 +16,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #33d6c9, #1c9831, #5278a9);
+    background: linear-gradient(135deg, #33d6c9, #5890bb, #0e3d7a);
 }
 
 .calculator {
@@ -68,7 +68,7 @@ body {
 }
 
 #delete {
-    background-color: rgba(188, 27, 70, 0.989);
+    background-color: rgba(242, 0, 64, 0.989);
 }
 
 .main-buttons {
@@ -83,11 +83,12 @@ body {
 }
 
 #equals {
-    background-color: #1a922e;
+    background-color: #169f2d;
 }
 
 .operator {
-    background-color: #4d484834;
+    background-color: #8c858589;
+    font-size: 45px;
 }
 
 button {
@@ -95,7 +96,7 @@ button {
     border: none;
     cursor: pointer;
     font-family: inherit;
-    font-size: 35px;
+    font-size: 40px;
     transition: all 0.15s;
 }
 
