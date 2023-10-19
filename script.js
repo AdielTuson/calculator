@@ -38,13 +38,13 @@ const dotBtn = document.querySelector('#dot');
 const operatorBtns = document.querySelectorAll('.operator');
 const operators = /[+\-×÷.]/;
 let displayValue = displaySection.textContent;
-    console.log(displayValue)
 let previousChar = null;
+
 
 function addToDisplay() {
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            let currentChar= button.textContent; 
+            let currentChar = button.textContent; 
             if ((displayValue == "0") && (isOperator(currentChar) === false) 
             ) {
                 displayValue = ''; 
@@ -53,9 +53,10 @@ function addToDisplay() {
                 // Prevent consecutive operators
                 return;
             }
+            
 
             displayValue += currentChar;
-            previousChar= currentChar;
+            previousChar = currentChar;
             checkDot();
             updateDisplay();
         })
@@ -65,9 +66,10 @@ addToDisplay();
 
 function clearDisplay() {
     clearBtn.addEventListener('click', () => {
-        displayValue = 0;
+        displayValue = "0";
         checkDot();
         updateDisplay();
+        resetPreviousChar();
     })
 }
 clearDisplay();
@@ -79,8 +81,9 @@ function deleteChar(){
         }
 
         else {
-            displayValue = 0;
+            displayValue = '0';
         }
+        resetPreviousChar();
         checkDot();
         updateDisplay();        
     })
@@ -93,7 +96,6 @@ function getSolution() {
         if (displayValue !== 0){
                 console.log(typeof displayValue)
             displayValue = displayValue.split(/([-+×÷])/);
-                console.log( typeof displayValue)
             if (displayValue[2] == '') {
                 displayValue.splice(1,2);
             }
@@ -107,7 +109,6 @@ function getSolution() {
                     displayValue.splice(1,2);
                 }
             }
-            console.log(displayValue)
             if (!isNaN(displayValue)) {
                 roundAnswer();
             }
@@ -136,6 +137,18 @@ function isOperator(char){
 
 function roundAnswer() {
     displayValue = parseFloat((+displayValue).toFixed(3)).toString();
+}
+
+//Will reset the previousChar variable in order to prevent errors
+function resetPreviousChar() {
+    const lastChar = displayValue.charAt(displayValue.length -1);
+    if (!isOperator(lastChar)){
+        previousChar = null;
+    }
+
+    else {
+        previousChar = lastChar;
+    }
 }
 
 //Add keyboard support 
